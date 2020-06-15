@@ -4,13 +4,12 @@ using System.Text;
 
 namespace Shapes.Shapes
 {
-    public class Triangle
+    //X and Y from the base represents the top point of the triangle.
+    public class Triangle : Shape
     {
-        public int TopXPosition { get; set; }
-        public int TopYPosition { get; set; }
-        public int RightXPosition { get; set; }
-        public int RightYPosition { get; set; }
-        public int LeftXPosition { get; set; }
-        public int LeftYPosition { get; set; }
+        public int PositionX2 { get; set; }
+        public int PositionY2 { get; set; }
+        public int PositionX3 { get; set; }
+        public int PositionY3 { get; set; }
     }
 }

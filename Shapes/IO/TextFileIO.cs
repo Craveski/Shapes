@@ -16,28 +16,6 @@ namespace Shapes.IO
             return shapes;
         }
 
-        public void WriteToFile(string filePath, List<Shape> shapes)
-        {
-            using (StreamWriter s = new StreamWriter(filePath, false))
-            {
-                foreach (var shape in shapes)
-                {
-                    if (shape.GetType() == typeof(Circle))
-                    {
-                        s.WriteLine($"CIRC({shape.PositionX} {shape.PositionY}, {((Circle)shape).Radius})");
-                    }
-                    else if (shape.GetType() == typeof(Rectangle))
-                    {
-                        s.WriteLine($"RECT({shape.PositionX} {shape.PositionY}, {((Rectangle)shape).Width} {((Rectangle)shape).Height})");
-                    }
-                    else
-                    {
-                        s.WriteLine($"TRIA({shape.PositionX} {shape.PositionY}, {((Triangle)shape).PositionX2} {((Triangle)shape).PositionY2}, {((Triangle)shape).PositionX3} {((Triangle)shape).PositionY3})");
-                    }
-                }
-            }
-        }
-
         private string[] ReadFile(string filePath)
         {
             string[] fileInfo = File.ReadAllLines(filePath);
@@ -52,7 +30,6 @@ namespace Shapes.IO
             {
                 if (item.Contains("RECT"))
                 {
-                    string x = "Incorrect Format";
                     char[] delimeters = { '(', ' ', ',', ' ', ' ', ')' };
                     string[] stringChunks = item.Split(delimeters);
                     var rectangle = new Rectangle()
@@ -100,6 +77,28 @@ namespace Shapes.IO
                 }
             }
             return shapes;
+        }
+
+        public void WriteToFile(string filePath, List<Shape> shapes)
+        {
+            using (StreamWriter s = new StreamWriter(filePath, false))
+            {
+                foreach (var shape in shapes)
+                {
+                    if (shape.GetType() == typeof(Circle))
+                    {
+                        s.WriteLine($"CIRC({shape.PositionX} {shape.PositionY}, {((Circle)shape).Radius})");
+                    }
+                    else if (shape.GetType() == typeof(Rectangle))
+                    {
+                        s.WriteLine($"RECT({shape.PositionX} {shape.PositionY}, {((Rectangle)shape).Width} {((Rectangle)shape).Height})");
+                    }
+                    else
+                    {
+                        s.WriteLine($"TRIA({shape.PositionX} {shape.PositionY}, {((Triangle)shape).PositionX2} {((Triangle)shape).PositionY2}, {((Triangle)shape).PositionX3} {((Triangle)shape).PositionY3})");
+                    }
+                }
+            }
         }
     }
 }

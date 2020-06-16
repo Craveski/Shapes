@@ -21,8 +21,10 @@ namespace Shapes
         {
             this.FileSystemIO = new TextFileIO();
 
+            //Parse data from file into list of base class shapes
             var shapes = FileSystemIO.ReadFromFile(@"C:\Users\Crave-Laptop\Documents\Shapes.txt");
 
+            //If type of rectangle, add it to list for later use
             var rectangles = shapes.OfType<Rectangle>().ToList();
 
             int count = 0;
@@ -37,7 +39,8 @@ namespace Shapes
                 //2. Increase the diameter of all circles by 2 units
                 if (shape.GetType() == typeof(Circle))
                 {
-                    ((Circle)shape).UpdateRadius(2);
+                    //Only increase by 1, as the radius is half the width of the diameter
+                    ((Circle)shape).UpdateRadius(1);
                 }
                 //3. Move all shapes 2 units up, and 2 units to the left
                 shape.MoveX(-2);
@@ -46,9 +49,9 @@ namespace Shapes
                 //4. Rotate the triangle 45° clockwise around its centre
                 //Not sure
 
+                //5. Double the width of the left-most square, turning it into a rectangle
                 if (count == 0)
                 {
-                    //5. Double the width of the left-most square, turning it into a rectangle
                     var leftSquare = rectangles.OrderBy(shape => shape.PositionX).FirstOrDefault();
                     leftSquare.Width *= 2;
 

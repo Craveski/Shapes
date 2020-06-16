@@ -13,11 +13,5 @@ namespace Shapes.Shapes
         {
             this.Radius += units;
         }
-
-        //public override string ToString()
-        //{
-        //    //Return data in correct format
-        //    return $"CIRC({PositionX} {PositionY}, {Radius})";
-        //}
     }
 }
